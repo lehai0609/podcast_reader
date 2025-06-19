@@ -1,0 +1,58 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test-frontend:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: podcast-reader-app/package-lock.json
+      
+      - name: Install dependencies
+        run: npm ci
+        working-directory: podcast-reader-app
+      
+      - name: Run ESLint
+        run: npx eslint src/ --ext .ts,.tsx
+        working-directory: podcast-reader-app
+      
+      - name: Type check
+        run: npx tsc --noEmit
+        working-directory: podcast-reader-app
+
+  test-backend:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+      
+      - name: Install dependencies
+        run: npm ci
+        working-directory: backend
+      
+      - name: Build backend
+        run: npm run build
+        working-directory: backend
+      
+      - name: Run tests
+        run: npm test
+        working-directory: backend

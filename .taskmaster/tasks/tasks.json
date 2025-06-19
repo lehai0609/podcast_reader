@@ -1,0 +1,306 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Project Repository and Development Environment",
+        "description": "Initialize the project repository with React Native using Expo and configure the development environment for both frontend and backend development.",
+        "details": "1. Create a new GitHub repository for the project\n2. Initialize React Native project with Expo: `expo init podcast-reader-app`\n3. Set up ESLint and Prettier for code quality\n4. Configure TypeScript for type safety\n5. Create folder structure for the project:\n   - `/src/components` - Reusable UI components\n   - `/src/screens` - App screens\n   - `/src/navigation` - Navigation configuration\n   - `/src/services` - API and service integrations\n   - `/src/hooks` - Custom React hooks\n   - `/src/utils` - Utility functions\n   - `/src/assets` - Images, fonts, etc.\n6. Set up backend folder structure with Node.js and Express\n7. Configure basic CI/CD pipeline for automated testing and deployment",
+        "testStrategy": "1. Verify that the project builds successfully\n2. Ensure all development dependencies are correctly installed\n3. Confirm that the development server starts without errors\n4. Test the basic app shell renders correctly on iOS and Android simulators",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Implement User Authentication System",
+        "description": "Develop a user authentication system that allows users to register, login, and reset passwords using email/password authentication.",
+        "details": "1. Set up Auth0 or Firebase Auth integration\n2. Create authentication service with methods for:\n   - User registration\n   - Login\n   - Password reset\n   - Logout\n   - Session persistence\n3. Implement authentication screens:\n   - Login screen\n   - Registration screen\n   - Password reset screen\n4. Create protected route middleware for authenticated routes\n5. Implement token refresh mechanism\n6. Store authentication state in Redux or Zustand\n7. Add form validation for all authentication forms\n8. Implement error handling and user feedback",
+        "testStrategy": "1. Unit test authentication service methods\n2. Test form validation for edge cases\n3. Verify token refresh works correctly\n4. Test authentication persistence across app restarts\n5. Verify password reset flow works end-to-end\n6. Test error handling for invalid credentials",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Setup Database Schema and ORM",
+        "description": "Design and implement the PostgreSQL database schema and set up an ORM for data access based on the conceptual data model in the PRD.",
+        "details": "1. Set up PostgreSQL database\n2. Install and configure Sequelize or Prisma ORM\n3. Define database models based on the conceptual data model:\n   - Users (user_id, email, preferences, created_at, updated_at)\n   - Episodes (episode_id, title, show_name, transcript_text, summary_article, published_date, created_at, updated_at)\n   - User_Consumption (id, user_id, episode_id, read_status, reading_time, bookmarked, shared, timestamp)\n   - Topics (topic_id, name, created_at, updated_at)\n   - Topic_Clusters (cluster_id, topic_name, confidence_score, created_at, updated_at)\n   - Episode_Topics (id, episode_id, topic_id)\n   - User_Topic_Interests (id, user_id, topic_id)\n4. Implement database migrations\n5. Create seed data for development\n6. Set up database connection pooling\n7. Implement data access layer with CRUD operations",
+        "testStrategy": "1. Unit test all database models\n2. Verify migrations run successfully\n3. Test CRUD operations for each model\n4. Validate relationships between models\n5. Test database connection pooling under load\n6. Verify seed data is correctly inserted",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Integrate Podscan.fm API for Podcast Data",
+        "description": "Implement integration with Podscan.fm API to fetch podcast transcripts and metadata for processing.",
+        "details": "1. Research and document Podscan.fm API endpoints and authentication requirements\n2. Create API client service for Podscan.fm\n3. Implement methods to fetch:\n   - Podcast show metadata\n   - Episode listings\n   - Full transcripts\n   - Audio file URLs\n4. Set up caching mechanism for API responses\n5. Implement error handling and retry logic\n6. Create background job to periodically fetch new episodes\n7. Store fetched data in the database\n8. Add logging for API requests and responses",
+        "testStrategy": "1. Unit test API client methods\n2. Mock API responses for testing\n3. Test error handling with simulated API failures\n4. Verify caching mechanism works correctly\n5. Test background job for fetching new episodes\n6. Validate data is correctly stored in the database",
+        "priority": "high",
+        "dependencies": [
+          1,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement AI Summarization Pipeline",
+        "description": "Develop a pipeline to process podcast transcripts using OpenAI GPT-4 or Anthropic Claude to generate newspaper-style article summaries.",
+        "details": "1. Set up OpenAI API integration\n2. Create summarization service with prompt engineering for article-style output\n3. Implement background job queue using Bull/Redis for batch processing\n4. Design summarization algorithm to:\n   - Extract key insights\n   - Generate headlines and subheadings\n   - Create bullet points for main takeaways\n   - Format content in newspaper style\n   - Limit to 300-800 words\n5. Store generated summaries in the database\n6. Implement retry mechanism for failed summarization attempts\n7. Add monitoring for API usage and costs\n8. Create admin dashboard to review summarization quality",
+        "testStrategy": "1. Test summarization with various podcast transcript types\n2. Verify word count limits are respected\n3. Test background job queue under load\n4. Validate formatting of generated summaries\n5. Test retry mechanism with simulated failures\n6. Verify monitoring correctly tracks API usage",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Implement Topic Extraction and Categorization",
+        "description": "Develop a system to automatically extract and categorize topics from podcast episodes with at least 85% accuracy.",
+        "details": "1. Research and select NLP library for topic extraction\n2. Implement topic extraction algorithm using:\n   - Named entity recognition\n   - Keyword extraction\n   - Topic modeling (LDA or similar)\n3. Create predefined topic categories (Technology, Business, Health, etc.)\n4. Implement classification algorithm to map extracted topics to categories\n5. Store topics and categories in the database\n6. Create relationships between episodes and topics\n7. Implement confidence scoring for topic assignments\n8. Add manual override capability for incorrect classifications",
+        "testStrategy": "1. Test topic extraction on diverse podcast content\n2. Measure classification accuracy against human-labeled test set\n3. Verify confidence scoring correctly identifies uncertain classifications\n4. Test performance with large transcript datasets\n5. Validate database relationships between episodes and topics",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          4,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Develop Topic-Based Content Feed",
+        "description": "Create a main feed that organizes content by topics rather than shows, allowing users to discover relevant insights across different podcasts.",
+        "details": "1. Design and implement feed algorithm that:\n   - Prioritizes user's preferred topics\n   - Includes diverse content sources\n   - Balances recency with relevance\n2. Create React Native components for the feed:\n   - Topic header components\n   - Article preview cards\n   - Feed filtering options\n3. Implement infinite scrolling with pagination\n4. Add pull-to-refresh functionality\n5. Create topic preference selection UI\n6. Implement backend API endpoints for:\n   - Fetching personalized feed\n   - Topic-specific content\n   - Setting topic preferences\n7. Add caching for feed data\n8. Implement analytics tracking for feed engagement",
+        "testStrategy": "1. Test feed algorithm with various user preferences\n2. Verify feed updates within 6 hours of new content processing\n3. Test infinite scrolling with large datasets\n4. Validate topic preference changes affect feed content\n5. Test performance on low-end devices\n6. Verify analytics correctly track user engagement",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3,
+          5,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Implement Audio Player Functionality",
+        "description": "Develop a simple audio player with basic controls that allows users to listen to podcast episodes while reading or for verification.",
+        "details": "1. Integrate react-native-track-player for audio playback\n2. Create audio player UI components:\n   - Play/pause button\n   - Skip forward/back 30 seconds\n   - Playback speed control\n   - Progress bar\n   - Timestamp display\n3. Implement background audio playback\n4. Add audio position memory\n5. Create mini-player for navigation between screens\n6. Implement audio streaming from source URLs\n7. Add audio caching for offline playback\n8. Integrate with device media controls\n9. Handle audio interruptions (calls, other apps)",
+        "testStrategy": "1. Test audio playback on iOS and Android\n2. Verify background playback works correctly\n3. Test position memory across app restarts\n4. Measure audio loading time (target: <3 seconds)\n5. Test with various network conditions\n6. Verify media controls integration works correctly\n7. Test handling of audio interruptions",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Article-Style Episode View",
+        "description": "Create a newspaper-style article view for podcast episode summaries with clear headings, bullet points, and access to the original audio source.",
+        "details": "1. Design and implement article screen with:\n   - Episode title and show information\n   - Publication date\n   - Estimated reading time\n   - Article body with formatted text\n   - Section headings\n   - Bullet points for key takeaways\n   - Audio player integration\n2. Implement text formatting for readability\n3. Add typography styling for newspaper feel\n4. Create responsive layout for different screen sizes\n5. Implement scroll position tracking\n6. Add reading progress indicator\n7. Create API endpoint to fetch full article content\n8. Implement content caching for offline reading",
+        "testStrategy": "1. Test article rendering with various content lengths\n2. Verify formatting is consistent across devices\n3. Test accessibility features (text scaling, screen readers)\n4. Measure loading performance\n5. Verify audio player integration works correctly\n6. Test offline reading capability",
+        "priority": "high",
+        "dependencies": [
+          5,
+          8
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Implement Content Search Functionality",
+        "description": "Develop a search system that allows users to find specific insights or topics across episode content with highlighted results.",
+        "details": "1. Set up full-text search in PostgreSQL or integrate Elasticsearch\n2. Create search index for episode summaries and transcripts\n3. Implement search API endpoints with:\n   - Text query parameter\n   - Filters for topics, shows, dates\n   - Pagination\n   - Relevance scoring\n4. Design and implement search UI:\n   - Search input with suggestions\n   - Results listing with highlights\n   - Filter options\n5. Add debouncing for search input\n6. Implement result highlighting\n7. Create recent searches history\n8. Add analytics for search queries",
+        "testStrategy": "1. Test search performance with large dataset\n2. Verify search returns results within 2 seconds\n3. Test highlighting of search terms in results\n4. Validate relevance ranking of results\n5. Test with various search queries and filters\n6. Verify search covers content from past 12 months",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          5,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Implement Save and Bookmark Functionality",
+        "description": "Create a system for users to save interesting content to their personal library with tagging capabilities.",
+        "details": "1. Update database schema to track bookmarked content\n2. Create API endpoints for:\n   - Adding/removing bookmarks\n   - Fetching user's library\n   - Adding/editing tags\n3. Design and implement library UI:\n   - Saved articles listing\n   - Tag filtering\n   - Sort options (date, title, etc.)\n4. Add bookmark button to article view\n5. Implement tagging system with custom user tags\n6. Create tag management UI\n7. Add offline access to bookmarked content\n8. Implement sync mechanism across devices",
+        "testStrategy": "1. Test bookmark functionality across different article types\n2. Verify bookmarks sync across app sessions\n3. Test library with maximum capacity (500 articles)\n4. Validate tag filtering works correctly\n5. Test offline access to bookmarked content\n6. Verify sync mechanism works across devices",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          3,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Implement User Onboarding Flow",
+        "description": "Create a smooth onboarding experience for new users to set up their accounts, select topic preferences, and understand the app's value proposition.",
+        "details": "1. Design and implement onboarding screens:\n   - Welcome/value proposition\n   - Account creation\n   - Topic selection\n   - Optional tutorial\n2. Create topic selection UI with popular categories\n3. Implement onboarding state management\n4. Add progress indicators\n5. Create skip options for optional steps\n6. Implement analytics tracking for onboarding completion\n7. Add personalized welcome message based on selections\n8. Create backend endpoint to save initial preferences",
+        "testStrategy": "1. Test complete onboarding flow end-to-end\n2. Verify topic preferences are correctly saved\n3. Test skipping optional steps\n4. Validate analytics tracking for onboarding steps\n5. Test onboarding on different device sizes\n6. Verify onboarding completes within target time (30 seconds)",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Implement Personal Topic Radar with Push Notifications",
+        "description": "Develop a system that sends push notifications to users about new episodes matching their interests.",
+        "details": "1. Set up Expo Push Notifications\n2. Create notification service for sending targeted notifications\n3. Implement background job to match new content with user interests\n4. Design and implement notification settings UI:\n   - Topic selection\n   - Frequency controls\n   - Time window preferences\n   - Daily limit settings\n5. Create notification history view\n6. Implement deep linking from notifications to content\n7. Add analytics for notification engagement\n8. Create backend endpoints for notification preferences",
+        "testStrategy": "1. Test notification delivery on iOS and Android\n2. Verify notifications are sent within 2 hours of new matching content\n3. Test deep linking from notifications\n4. Validate frequency controls and daily limits\n5. Test with various user preference combinations\n6. Verify analytics correctly track notification engagement",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          6,
+          7
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Implement Conversational AI Chat Feature",
+        "description": "Develop a chat interface that allows users to ask questions about episode content and receive AI-generated responses with references to the transcript.",
+        "details": "1. Set up OpenAI API for chat functionality\n2. Implement RAG (Retrieval Augmented Generation) system:\n   - Create vector embeddings for transcript segments\n   - Set up vector database (Pinecone or Weaviate)\n   - Implement similarity search for relevant context\n3. Design and implement chat UI:\n   - Message input\n   - Chat history\n   - Timestamp references\n   - Loading indicators\n4. Create context management for maintaining conversation history\n5. Implement prompt engineering for accurate responses\n6. Add citation of specific transcript parts\n7. Create backend API endpoints for chat functionality\n8. Implement usage tracking and rate limiting",
+        "testStrategy": "1. Test chat with various question types\n2. Measure response time (target: <5 seconds)\n3. Verify accuracy of responses against transcript\n4. Test context maintenance in multi-turn conversations\n5. Validate timestamp references in responses\n6. Test with edge case questions and ambiguous queries",
+        "priority": "high",
+        "dependencies": [
+          4,
+          5,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Implement Expert Tracking System",
+        "description": "Create a system to identify and track experts across different podcast episodes, allowing users to follow thought leaders regardless of which show they appear on.",
+        "details": "1. Design expert identification algorithm:\n   - Named entity recognition for people\n   - Role/title extraction\n   - Cross-episode identity matching\n2. Create expert profiles with:\n   - Name and bio\n   - Areas of expertise\n   - Episode appearances\n   - Key insights\n3. Implement follow/unfollow functionality\n4. Create expert profile UI\n5. Add expert appearances section to feed\n6. Implement notification system for new appearances\n7. Create backend API endpoints for expert data\n8. Add admin tools for expert profile verification",
+        "testStrategy": "1. Test expert identification accuracy (target: 90%+)\n2. Verify cross-episode identity matching\n3. Test follow/unfollow functionality\n4. Validate notifications for new expert appearances\n5. Test expert profile display with various data completeness\n6. Verify expert appearances section in feed",
+        "priority": "low",
+        "dependencies": [
+          3,
+          4,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 16,
+        "title": "Implement Topic Clustering and Recommendations",
+        "description": "Develop a system to cluster related topics and provide recommendations for similar content from different podcasts.",
+        "details": "1. Implement topic clustering algorithm:\n   - Vector embeddings for topics\n   - Similarity calculation\n   - Hierarchical clustering\n2. Create recommendation engine based on:\n   - Content similarity\n   - User reading history\n   - Popularity metrics\n3. Design and implement \"Similar Topics\" UI:\n   - Recommendation cards\n   - Topic relationship visualization\n   - Source diversity indicators\n4. Create backend API endpoints for recommendations\n5. Implement feedback mechanism for recommendation quality\n6. Add analytics for recommendation engagement\n7. Create periodic retraining job for clustering model",
+        "testStrategy": "1. Test clustering with diverse topic sets\n2. Verify recommendations include content from different podcasts\n3. Test recommendation relevance with user feedback\n4. Validate \"Similar Topics\" section shows 3-5 relevant episodes\n5. Test recommendation engine performance\n6. Verify analytics correctly track recommendation engagement",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          7,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 17,
+        "title": "Implement Social Sharing Functionality",
+        "description": "Create a system for users to share interesting articles via social media, email, or direct link, with attractive preview cards.",
+        "details": "1. Implement share functionality using native share APIs\n2. Create shareable links with preview metadata\n3. Design and implement share UI:\n   - Share button in article view\n   - Platform selection\n   - Custom message option\n4. Create public article view for non-users (limited to 3 per month)\n5. Implement tracking for shared links\n6. Add attribution and app download links to shared content\n7. Create backend API endpoints for shared content access\n8. Implement rate limiting for non-user access",
+        "testStrategy": "1. Test sharing on various platforms (social media, email, messaging)\n2. Verify preview cards display correctly\n3. Test shared link access by non-users\n4. Validate 3-article limit for non-users\n5. Test attribution and download links\n6. Verify tracking of shared link engagement",
+        "priority": "low",
+        "dependencies": [
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 18,
+        "title": "Implement Analytics and Monitoring System",
+        "description": "Set up comprehensive analytics and monitoring to track user engagement, app performance, and business metrics.",
+        "details": "1. Integrate analytics platform (Google Analytics, Amplitude, or Mixpanel)\n2. Set up error tracking with Sentry\n3. Implement event tracking for key user actions:\n   - Article views\n   - Reading time\n   - Search queries\n   - Bookmark actions\n   - Share events\n   - Chat interactions\n4. Create performance monitoring for:\n   - API response times\n   - App load times\n   - AI processing duration\n5. Design and implement admin dashboard\n6. Set up automated alerts for critical issues\n7. Create periodic reports for key metrics\n8. Implement A/B testing framework",
+        "testStrategy": "1. Verify all key events are correctly tracked\n2. Test error reporting with simulated crashes\n3. Validate performance metrics accuracy\n4. Test admin dashboard functionality\n5. Verify automated alerts trigger correctly\n6. Test A/B testing framework with sample experiment",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2,
+          7,
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 19,
+        "title": "Implement Offline Mode and Caching",
+        "description": "Develop offline capabilities to allow users to read saved content and access their library without an internet connection.",
+        "details": "1. Implement local storage for:\n   - Bookmarked articles\n   - Reading history\n   - User preferences\n2. Create sync mechanism for offline changes\n3. Implement content prefetching based on user behavior\n4. Add offline mode indicator\n5. Create graceful degradation for unavailable features\n6. Implement background sync when connection is restored\n7. Add storage management settings\n8. Create cache invalidation strategy",
+        "testStrategy": "1. Test offline access to previously viewed content\n2. Verify sync works correctly after reconnection\n3. Test storage limits and management\n4. Validate offline mode indicator\n5. Test with various network conditions\n6. Verify graceful degradation of features",
+        "priority": "low",
+        "dependencies": [
+          7,
+          9,
+          11
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 20,
+        "title": "Prepare for Production Deployment",
+        "description": "Finalize the application for production deployment, including performance optimization, security hardening, and deployment configuration.",
+        "details": "1. Perform security audit:\n   - Authentication flows\n   - API endpoints\n   - Data encryption\n   - Dependency vulnerabilities\n2. Optimize performance:\n   - Bundle size reduction\n   - Image optimization\n   - API response caching\n   - Database query optimization\n3. Set up production infrastructure:\n   - AWS or Vercel for backend\n   - CloudFront for CDN\n   - Database scaling configuration\n   - Load balancing\n4. Configure CI/CD pipeline for production\n5. Create backup and disaster recovery plan\n6. Prepare App Store and Google Play submissions\n7. Create production monitoring dashboard\n8. Document system architecture and operations procedures",
+        "testStrategy": "1. Perform end-to-end testing of critical user flows\n2. Conduct load testing for backend services\n3. Verify security with penetration testing\n4. Test app on various devices and OS versions\n5. Validate backup and recovery procedures\n6. Perform final QA review before submission",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10,
+          11,
+          18
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-06-19T09:37:36.871Z",
+      "updated": "2025-06-19T09:37:36.871Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
