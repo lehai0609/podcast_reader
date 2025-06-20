@@ -1,0 +1,165 @@
+{
+	"meta": {
+		"generatedAt": "2025-06-20T06:43:54.066Z",
+		"tasksAnalyzed": 19,
+		"totalTasks": 20,
+		"analysisCount": 19,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": false
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 2,
+			"taskTitle": "Implement User Authentication System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down the user authentication system implementation into discrete components: Auth0/Firebase integration setup, authentication service creation with specific methods, UI screen development for login/register/reset, middleware implementation for protected routes, token management, state management integration, form validation, and error handling systems.",
+			"reasoning": "High complexity due to security requirements, multiple integration points (Auth0/Firebase, Redux/Zustand), and comprehensive testing needs. The task involves both frontend and backend components with critical security implications."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Setup Database Schema and ORM",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Decompose the database setup into: PostgreSQL installation and configuration, ORM selection and setup (Sequelize/Prisma), individual model definitions for each entity (Users, Episodes, User_Consumption, Topics, etc.), migration system implementation, seed data creation, connection pooling configuration, and data access layer development with CRUD operations.",
+			"reasoning": "Very high complexity due to multiple interconnected models, relationship management, migration strategies, and performance considerations. Foundation task that affects all other database-dependent features."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Integrate Podscan.fm API for Podcast Data",
+			"complexityScore": 6,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Split the API integration into: API research and documentation, client service creation, individual method implementations for different data types (metadata, episodes, transcripts), caching mechanism setup, error handling and retry logic, background job implementation, database storage integration, and logging system setup.",
+			"reasoning": "Moderate-high complexity involving external API integration, error handling, background processing, and data persistence. Requires robust error handling due to external dependency."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Implement AI Summarization Pipeline",
+			"complexityScore": 9,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down the AI pipeline into: OpenAI API integration setup, summarization service with prompt engineering, background job queue implementation with Bull/Redis, summarization algorithm development with specific formatting requirements, database storage integration, retry mechanism implementation, API monitoring and cost tracking, and admin dashboard creation for quality review.",
+			"reasoning": "Very high complexity due to AI integration, background processing, prompt engineering, cost management, and quality assurance requirements. Critical for core product functionality."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Implement Topic Extraction and Categorization",
+			"complexityScore": 8,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Decompose topic extraction into: NLP library research and selection, topic extraction algorithm implementation using multiple techniques (NER, keyword extraction, topic modeling), predefined category creation, classification algorithm development, database integration for topics and relationships, confidence scoring implementation, and manual override system creation.",
+			"reasoning": "High complexity involving multiple NLP techniques, machine learning algorithms, accuracy requirements (85%+), and database relationship management. Requires significant research and testing."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Develop Topic-Based Content Feed",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Split the feed development into: feed algorithm design and implementation, React Native component creation (headers, cards, filters), infinite scrolling with pagination, pull-to-refresh functionality, topic preference UI, backend API endpoint development, caching implementation, and analytics tracking integration.",
+			"reasoning": "High complexity due to algorithm development, multiple UI components, performance requirements, and personalization features. Core user-facing feature with multiple dependencies."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Implement Audio Player Functionality",
+			"complexityScore": 6,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Break down audio player into: react-native-track-player integration, UI component creation (controls, progress bar, timestamps), background playback implementation, position memory system, mini-player creation, audio streaming setup, caching for offline playback, device media controls integration, and audio interruption handling.",
+			"reasoning": "Moderate-high complexity due to native audio handling, background processing, cross-platform compatibility, and device integration requirements. Multiple technical challenges with platform-specific considerations."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Implement Article-Style Episode View",
+			"complexityScore": 5,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Decompose article view into: screen design and layout implementation, text formatting and typography styling, responsive layout for different screen sizes, scroll tracking and progress indicators, API endpoint creation for content fetching, audio player integration, content caching for offline reading, and accessibility feature implementation.",
+			"reasoning": "Moderate complexity focused on UI/UX implementation with some backend integration. Primarily frontend work with performance and accessibility considerations."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Implement Content Search Functionality",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Split search functionality into: search engine setup (PostgreSQL full-text or Elasticsearch), search index creation, API endpoint development with filtering and pagination, search UI implementation with suggestions and highlights, input debouncing, result highlighting system, search history implementation, and analytics integration.",
+			"reasoning": "High complexity due to search engine integration, performance requirements (2-second response time), relevance ranking, and comprehensive UI features. Requires both backend and frontend expertise."
+		},
+		{
+			"taskId": 11,
+			"taskTitle": "Implement Save and Bookmark Functionality",
+			"complexityScore": 5,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down bookmark system into: database schema updates, API endpoint creation for bookmark operations, library UI implementation with filtering and sorting, bookmark button integration, tagging system development, tag management UI, offline access implementation, and cross-device sync mechanism.",
+			"reasoning": "Moderate complexity with straightforward CRUD operations, UI components, and sync requirements. Well-defined scope with clear functional requirements."
+		},
+		{
+			"taskId": 12,
+			"taskTitle": "Implement User Onboarding Flow",
+			"complexityScore": 4,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Decompose onboarding into: welcome screen design and implementation, account creation flow, topic selection UI with popular categories, optional tutorial creation, onboarding state management, progress indicators and skip options, analytics tracking integration, and backend endpoint for preference saving.",
+			"reasoning": "Moderate complexity primarily focused on UI/UX flow with state management. Well-defined user journey with clear success metrics."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "Implement Personal Topic Radar with Push Notifications",
+			"complexityScore": 6,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Split notification system into: Expo Push Notifications setup, notification service creation, background job for content matching, notification settings UI with frequency and time controls, notification history view, deep linking implementation, engagement analytics, and backend API for preferences.",
+			"reasoning": "Moderate-high complexity due to push notification integration, background processing, deep linking, and cross-platform considerations. Requires careful timing and user preference management."
+		},
+		{
+			"taskId": 14,
+			"taskTitle": "Implement Conversational AI Chat Feature",
+			"complexityScore": 9,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down chat feature into: OpenAI API integration, RAG system implementation with vector embeddings and database, chat UI development with message history, context management for conversations, prompt engineering for accuracy, citation system for transcript references, backend API development, and usage tracking with rate limiting.",
+			"reasoning": "Very high complexity involving advanced AI techniques (RAG), vector databases, real-time chat functionality, and complex prompt engineering. Requires expertise in AI/ML and sophisticated backend architecture."
+		},
+		{
+			"taskId": 15,
+			"taskTitle": "Implement Expert Tracking System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Decompose expert tracking into: expert identification algorithm using NER and role extraction, cross-episode identity matching system, expert profile creation with bio and expertise areas, follow/unfollow functionality, expert profile UI, feed integration for appearances, notification system for new appearances, and admin verification tools.",
+			"reasoning": "High complexity due to NLP requirements for expert identification, identity matching across episodes, and comprehensive profile management. Requires machine learning expertise and complex data relationships."
+		},
+		{
+			"taskId": 16,
+			"taskTitle": "Implement Topic Clustering and Recommendations",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Split recommendation system into: topic clustering algorithm with vector embeddings and similarity calculation, recommendation engine based on content similarity and user history, 'Similar Topics' UI with relationship visualization, backend API for recommendations, feedback mechanism for quality improvement, engagement analytics, and periodic model retraining jobs.",
+			"reasoning": "High complexity involving machine learning algorithms, vector operations, recommendation systems, and continuous learning. Requires expertise in ML and performance optimization for real-time recommendations."
+		},
+		{
+			"taskId": 17,
+			"taskTitle": "Implement Social Sharing Functionality",
+			"complexityScore": 4,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down sharing into: native share API integration, shareable link creation with metadata, share UI implementation with platform selection, public article view for non-users with access limits, shared link tracking, attribution and download link integration, and rate limiting for non-user access.",
+			"reasoning": "Moderate complexity with straightforward sharing functionality, link generation, and access control. Well-defined scope with clear technical requirements."
+		},
+		{
+			"taskId": 18,
+			"taskTitle": "Implement Analytics and Monitoring System",
+			"complexityScore": 6,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Decompose analytics into: analytics platform integration (Google Analytics/Amplitude/Mixpanel), error tracking setup with Sentry, event tracking implementation for key user actions, performance monitoring for APIs and app metrics, admin dashboard creation, automated alert configuration, periodic reporting system, and A/B testing framework setup.",
+			"reasoning": "Moderate-high complexity due to multiple platform integrations, comprehensive event tracking, dashboard development, and A/B testing framework. Requires understanding of analytics best practices and performance monitoring."
+		},
+		{
+			"taskId": 19,
+			"taskTitle": "Implement Offline Mode and Caching",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Split offline functionality into: local storage implementation for articles and preferences, sync mechanism for offline changes, content prefetching based on user behavior, offline mode indicator, graceful feature degradation, background sync on reconnection, storage management settings, and cache invalidation strategy.",
+			"reasoning": "High complexity due to data synchronization challenges, storage management, conflict resolution, and seamless online/offline transitions. Requires careful architecture for data consistency."
+		},
+		{
+			"taskId": 20,
+			"taskTitle": "Prepare for Production Deployment",
+			"complexityScore": 8,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down production preparation into: comprehensive security audit of authentication and APIs, performance optimization including bundle size and database queries, production infrastructure setup with AWS/Vercel and CDN, CI/CD pipeline configuration, backup and disaster recovery planning, app store submission preparation, production monitoring dashboard, and system documentation creation.",
+			"reasoning": "High complexity due to comprehensive security, performance, and infrastructure requirements. Critical task requiring expertise across multiple domains and thorough testing procedures."
+		}
+	]
+}
