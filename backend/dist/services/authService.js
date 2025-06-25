@@ -37,10 +37,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authService = exports.AuthService = void 0;
+const dotenv_1 = __importDefault(require("dotenv"));
 const admin = __importStar(require("firebase-admin"));
 const auth0_1 = require("auth0");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const express_validator_1 = require("express-validator");
+// Ensure environment variables are loaded
+dotenv_1.default.config();
 class AuthService {
     auth0Management = null;
     firebaseApp = null;
@@ -53,6 +56,11 @@ class AuthService {
             const auth0Domain = process.env.AUTH0_DOMAIN;
             const auth0ClientId = process.env.AUTH0_CLIENT_ID;
             const auth0ClientSecret = process.env.AUTH0_CLIENT_SECRET;
+            console.log('Debug - Auth0 env vars:', {
+                domain: auth0Domain ? '✅' : '❌',
+                clientId: auth0ClientId ? '✅' : '❌',
+                clientSecret: auth0ClientSecret ? '✅' : '❌'
+            });
             if (auth0Domain && auth0ClientId && auth0ClientSecret) {
                 this.auth0Management = new auth0_1.ManagementClient({
                     domain: auth0Domain,
@@ -74,6 +82,11 @@ class AuthService {
             const firebaseProjectId = process.env.FIREBASE_PROJECT_ID;
             const firebasePrivateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
             const firebaseClientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+            console.log('Debug - Firebase env vars:', {
+                projectId: firebaseProjectId ? '✅' : '❌',
+                privateKey: firebasePrivateKey ? '✅' : '❌',
+                clientEmail: firebaseClientEmail ? '✅' : '❌'
+            });
             if (firebaseProjectId && firebasePrivateKey && firebaseClientEmail) {
                 this.firebaseApp = admin.initializeApp({
                     credential: admin.credential.cert({

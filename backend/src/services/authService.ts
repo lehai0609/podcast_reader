@@ -1,8 +1,12 @@
+import dotenv from 'dotenv';
 import * as admin from 'firebase-admin';
 import { ManagementClient } from 'auth0';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { body, validationResult } from 'express-validator';
+
+// Ensure environment variables are loaded
+dotenv.config();
 
 export interface AuthUser {
   uid: string;
@@ -54,6 +58,12 @@ export class AuthService {
       const auth0ClientId = process.env.AUTH0_CLIENT_ID;
       const auth0ClientSecret = process.env.AUTH0_CLIENT_SECRET;
 
+      console.log('Debug - Auth0 env vars:', {
+        domain: auth0Domain ? '✅' : '❌',
+        clientId: auth0ClientId ? '✅' : '❌',
+        clientSecret: auth0ClientSecret ? '✅' : '❌'
+      });
+
       if (auth0Domain && auth0ClientId && auth0ClientSecret) {
         this.auth0Management = new ManagementClient({
           domain: auth0Domain,
@@ -74,6 +84,12 @@ export class AuthService {
       const firebaseProjectId = process.env.FIREBASE_PROJECT_ID;
       const firebasePrivateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
       const firebaseClientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+
+      console.log('Debug - Firebase env vars:', {
+        projectId: firebaseProjectId ? '✅' : '❌',
+        privateKey: firebasePrivateKey ? '✅' : '❌',
+        clientEmail: firebaseClientEmail ? '✅' : '❌'
+      });
 
       if (firebaseProjectId && firebasePrivateKey && firebaseClientEmail) {
         this.firebaseApp = admin.initializeApp({

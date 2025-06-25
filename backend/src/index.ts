@@ -56,4 +56,11 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log('Firebase Project ID:', process.env.FIREBASE_PROJECT_ID);
+  console.log('ENV loaded:', {
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  hasPrivateKey: !!process.env.FIREBASE_PRIVATE_KEY,
+  privateKeyStart: process.env.FIREBASE_PRIVATE_KEY?.substring(0, 30),
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL
+});
 });

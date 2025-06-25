@@ -30,7 +30,7 @@
             "description": "Configure and integrate Auth0 with Firebase, ensuring secure token exchange and user mapping between the two systems.",
             "dependencies": [],
             "details": "Set up Auth0 and Firebase projects, configure Auth0 to issue tokens, and implement backend logic to generate custom Firebase tokens upon Auth0 authentication. Ensure secure storage of credentials and proper environment configuration.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 2,
@@ -40,7 +40,7 @@
               1
             ],
             "details": "Implement service methods to interact with Auth0 and Firebase APIs, handle token acquisition, and abstract authentication logic for use throughout the application.",
-            "status": "pending"
+            "status": "done"
           },
           {
             "id": 3,
